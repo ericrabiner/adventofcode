@@ -7,26 +7,26 @@ const seats = [];
 
 lines.forEach((line, i) => {
   let rowMin = 0;
-  let rowMax = 127;
+  //   let rowMax = 127;
   let colMin = 0;
-  let colMax = 7;
+  //   let colMax = 7;
   line.split("").forEach((char, j) => {
     if (j <= 6) {
       const range = Math.pow(2, 6 - j);
       if (char === "B") {
         rowMin += range;
       }
-      if (char === "F") {
-        rowMax -= range;
-      }
+      //   if (char === "F") {
+      //     rowMax -= range;
+      //   }
     } else if (j <= 10) {
       const range = Math.pow(2, 9 - j);
       if (char === "R") {
         colMin += range;
       }
-      if (char === "L") {
-        colMax -= range;
-      }
+      //   if (char === "L") {
+      //     colMax -= range;
+      //   }
     }
   });
   const seatId = rowMin * 8 + colMin;
