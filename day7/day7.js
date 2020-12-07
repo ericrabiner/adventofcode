@@ -21,12 +21,12 @@ const getBagsMap = (line) => {
   ];
 };
 
-const hasGold = (map, cur, returnSet) => {
+const hasBagColor = (color, map, cur, returnSet) => {
   return map.get(cur).some((r) => {
     if (
-      r[1] === "shiny gold" ||
+      r[1] === color ||
       returnSet.has(r[1]) ||
-      hasGold(map, r[1], returnSet)
+      hasBagColor(color, map, r[1], returnSet)
     ) {
       returnSet.add(cur);
       return true;
@@ -38,7 +38,9 @@ const hasGold = (map, cur, returnSet) => {
 const partOne = () => {
   const bagsMap = new Map(lines.map((line) => getBagsMap(line)));
   const bagsSet = new Set();
-  bagsMap.forEach((val, key) => hasGold(bagsMap, key, bagsSet));
+  bagsMap.forEach((val, key) =>
+    hasBagColor("shiny gold", bagsMap, key, bagsSet)
+  );
   return bagsSet.size;
 };
 
