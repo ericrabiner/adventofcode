@@ -25,7 +25,6 @@ const doAction = (acc, index, map) => {
     terminated = doAction(acc, index, map);
   } else {
     if (index === map.size) {
-      terminated = true;
       console.log("Part 2:", acc);
       return true;
     }
@@ -48,22 +47,26 @@ const partTwo = () => {
   let index = 0;
   while (!success && index < actionsMap.size) {
     let acc = 0;
-    if (actionsMap.get(index)[0] === "jmp") {
-      actionsMap.set(index, [
-        "nop",
-        actionsMap.get(index)[1],
-        actionsMap.get(index)[2],
-      ]);
-    } else if (actionsMap.get(index)[0] === "nop") {
-      actionsMap.set(index, [
-        "jmp",
-        actionsMap.get(index)[1],
-        actionsMap.get(index)[2],
-      ]);
+    if (actionsMap.get(index)[0] === "acc") {
+      index++;
+    } else {
+      if (actionsMap.get(index)[0] === "jmp") {
+        actionsMap.set(index, [
+          "nop",
+          actionsMap.get(index)[1],
+          actionsMap.get(index)[2],
+        ]);
+      } else if (actionsMap.get(index)[0] === "nop") {
+        actionsMap.set(index, [
+          "jmp",
+          actionsMap.get(index)[1],
+          actionsMap.get(index)[2],
+        ]);
+      }
+      index++;
+      success = doAction(acc, 0, actionsMap);
+      actionsMap = new Map(lines.map((line, i) => getActionsMap(line, i)));
     }
-    index++;
-    success = doAction(acc, 0, actionsMap);
-    actionsMap = new Map(lines.map((line, i) => getActionsMap(line, i)));
   }
 };
 
