@@ -52,7 +52,6 @@ class Ship {
 }
 
 const shipHappens = new Ship(0, 0, 10, 1);
-console.log(shipHappens.pos);
 
 lines.forEach((line, i) => {
   const [_, type, units] = line.match(actionRegex);

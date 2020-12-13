@@ -6,6 +6,7 @@ const actionRegex = /([A-Z]+)([0-9]+)/;
 
 // 44086 too high
 // 36554 too low
+// 41212 correct
 
 class Ship {
   // w = waypoint
@@ -22,54 +23,33 @@ class Ship {
   move(type, units) {
     if (type === "N") {
       this.wY += units;
-      let tan = (Math.atan(this.wY / this.wX) * 180) / Math.PI;
-      //   if (tan < 0) {
-      //     tan = 180 + tan;
-      //   }
-      this.wDeg = tan;
+      const atan = (Math.atan(this.wY / this.wX) * 180) / Math.PI;
+      this.wDeg = atan;
     }
     if (type === "S") {
       this.wY -= units;
-      let tan = (Math.atan(this.wY / this.wX) * 180) / Math.PI;
-      //   if (tan < 0) {
-      //     tan = 180 + tan;
-      //   }
-      this.wDeg = tan;
+      const atan = (Math.atan(this.wY / this.wX) * 180) / Math.PI;
+      this.wDeg = atan;
     }
     if (type === "E") {
       this.wX += units;
-      let tan = (Math.atan(this.wY / this.wX) * 180) / Math.PI;
-      //   if (tan < 0) {
-      //     tan = 180 + tan;
-      //   }
-      this.wDeg = tan;
+      const atan = (Math.atan(this.wY / this.wX) * 180) / Math.PI;
+      this.wDeg = atan;
     }
     if (type === "W") {
       this.wX -= units;
-      let tan = (Math.atan(this.wY / this.wX) * 180) / Math.PI;
-      //   if (tan < 0) {
-      //     tan = 180 + tan;
-      //   }
-      this.wDeg = tan;
+      const atan = (Math.atan(this.wY / this.wX) * 180) / Math.PI;
+      this.wDeg = atan;
     }
     if (type === "L") {
       this.wDeg += units;
-
-      this.wDeg %= 360;
-
-      const hypotenuse = Math.sqrt(
-        Math.pow(Math.abs(this.wX), 2) + Math.pow(Math.abs(this.wY), 2)
-      );
+      const hypotenuse = Math.sqrt(Math.pow(this.wX, 2) + Math.pow(this.wY, 2));
       this.wX = Math.round(hypotenuse * Math.cos((this.wDeg * Math.PI) / 180));
       this.wY = Math.round(hypotenuse * Math.sin((this.wDeg * Math.PI) / 180));
     }
     if (type === "R") {
       this.wDeg -= units;
-      this.wDeg %= 360;
-      //   if (this.wDeg < 0) this.wDeg += 180;
-      const hypotenuse = Math.sqrt(
-        Math.pow(Math.abs(this.wX), 2) + Math.pow(Math.abs(this.wY), 2)
-      );
+      const hypotenuse = Math.sqrt(Math.pow(this.wX, 2) + Math.pow(this.wY, 2));
       this.wX = Math.round(hypotenuse * Math.cos((this.wDeg * Math.PI) / 180));
       this.wY = Math.round(hypotenuse * Math.sin((this.wDeg * Math.PI) / 180));
     }
@@ -89,8 +69,6 @@ lines.forEach((line, i) => {
   if (i < 15) {
     console.log(shipHappens.pos);
   }
-  //   if (type === "R" || type === "L") console.log(type, units);
-  //   console.log(shipHappens.pos);
 });
 
 console.log(Math.abs(shipHappens.pos[0]) + Math.abs(shipHappens.pos[1]));
