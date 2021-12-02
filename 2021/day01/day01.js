@@ -1,5 +1,5 @@
 const fs = require("fs");
-const data = fs.readFileSync("./day1/day1.txt", "utf-8");
+const data = fs.readFileSync("./2021/day01/day01.txt", "utf-8");
 
 const lines = data.split(/\r?\n/);
 
