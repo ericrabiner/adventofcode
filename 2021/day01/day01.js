@@ -18,12 +18,12 @@ const partOne = () => {
 const partTwo = () => {
   let inc = 0;
   for (let i = 0; i < lines.length - 3; i++) {
-    let a = +lines[i];
-    let b = +lines[i + 1];
-    let c = +lines[i + 2];
-    let d = +lines[i + 3];
-    let prvSum = a + b + c;
-    let curSum = b + c + d;
+    const a = +lines[i];
+    const b = +lines[i + 1];
+    const c = +lines[i + 2];
+    const d = +lines[i + 3];
+    const prvSum = a + b + c;
+    const curSum = b + c + d;
     if (curSum > prvSum) {
       inc++;
     }
