@@ -38,7 +38,6 @@ for (const line of lines) {
       }
     } else {
       yDiff = Math.abs(yDiff);
-      // console.log(yDiff, "small");
       for (let i = 0; i <= yDiff; i++) {
         arr[x1][i + y2]++;
       }
