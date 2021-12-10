@@ -61,14 +61,13 @@ for (const line of data) {
   const _line = removeValidChunks(line);
   const corrupted = findCorrupted(_line);
   if (corrupted) score1 += CORRUPTED_POINTS[corrupted];
-  else incomplete.push(line);
+  else incomplete.push(_line);
 }
 
 let scores = [];
 
 for (const line of incomplete) {
-  const _line = removeValidChunks(line);
-  const complete = completeLine(_line);
+  const complete = completeLine(line);
 
   let score = 0;
   for (const char of complete) {
