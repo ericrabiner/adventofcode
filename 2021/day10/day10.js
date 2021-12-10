@@ -46,10 +46,10 @@ const findCorrupted = (line) => {
 const completeLine = (line) => {
   let _line = "";
 
-  for (let i = line.length; i >= 0; i--) {
+  for (let i = line.length - 1; i >= 0; i--) {
     const char = line[i];
     const index = start.findIndex((c) => c === char);
-    if (index !== -1) _line += end[index];
+    _line += end[index];
   }
   return _line;
 };
